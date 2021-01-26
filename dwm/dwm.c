@@ -821,6 +821,7 @@ drawbar(Monitor *m)
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
+  char nmsymbol[16];
 
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
@@ -845,9 +846,13 @@ drawbar(Monitor *m)
 				urg & 1 << i);
 		x += w;
 	}
+
 	w = blw = TEXTW(m->ltsymbol);
+  snprintf(nmsymbol, sizeof(nmsymbol), "-|%d", m->nmaster);
 	drw_setscheme(drw, scheme[SchemeNorm]);
+
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+	x = drw_text(drw, x, 0, TEXTW(nmsymbol), bh, lrpad / 2, nmsymbol, 0);
 
 	if ((w = m->ww - tw - x) > bh) {
 		if (m->sel) {
