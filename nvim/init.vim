@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 call plug#end()
 
 let mapleader = ","
@@ -29,7 +29,7 @@ set showtabline=1
 set splitbelow
 set splitright
 set diffopt=vertical
-set formatoptions-=ro
+"set formatoptions-=o
 set autoindent
 set autowrite
 set incsearch
@@ -37,12 +37,15 @@ set hlsearch
 set smartcase
 set ignorecase
 
+command Maketex !pdflatex %:r && rm *.log *.aux
+autocmd BufRead,BufNewFile *.tex,*.md,*.txt,*.html setlocal spell
+
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = maintained,  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
-    enable = true,                 -- false will disable the whole extension
-    disable = {},                  -- list of language that will be disabled
+    enable = true,                -- false will disable the whole extension
+    disable = { },                -- list of language that will be disabled
   },
 }
 EOF

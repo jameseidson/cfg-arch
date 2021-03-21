@@ -1,0 +1,7 @@
+#!/bin/dash
+
+while true
+do
+  onedrive --synchronize
+  sleep 60
+done

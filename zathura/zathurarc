@@ -1,0 +1,13 @@
+set adjust-open "width"
+
+set pages-per-row 1
+
+set scroll-page-aware "true"
+set render-loading "false"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+set zoom-min 10
+set guioptions ""
+
+set font "Terminus 14"
