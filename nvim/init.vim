@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 call plug#end()
 
 let mapleader = ","
@@ -37,8 +38,12 @@ set hlsearch
 set smartcase
 set ignorecase
 
-command Maketex !pdflatex %:r && rm *.log *.aux
+command Maketex !xelatex %:r && rm *.log *.aux *.out
+
 autocmd BufRead,BufNewFile *.tex,*.md,*.txt,*.html setlocal spell
+autocmd BufReadPost *.cls set syntax=tex
+
+colorscheme spaceduck
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
